@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<executable>
+  <category>CSIM</category>
+  <title>TextureMapExtractor</title>
+  <description><![CDATA[Extracts brain tissue characterizatics based on two images: one original volume and a structure labeled volume defining the ROI. The two images have to be in the same space. 8 Haralick and 5 histogram feature maps can be extracted. Note: This Module is written to be used as both standalone in CLI (And Slicer GUI) or as a supporting module for TICCE. Because of this, the module supports two methods for outputing the generated maps: one returns an ITK vector image containing all feature maps and it is made primarily to be used by TICCE. The other saves all feature maps individually in a defined path (savingPrefix) and it is made primarily to be used out of TICCE (either CLI). Users can select the output method that best suits their needs.]]></description>
+  <version>0.0.1</version>
+  <documentation-url>http://www.example.com/Slicer/Modules/TextureMapExtractor</documentation-url>
+  <license>Slicer</license>
+  <contributor>Fabrício H Simozo (Univeristy of São Paulo)</contributor>
+  <acknowledgements>xxx</acknowledgements>
+  <parameters>
+    <label>IO</label>
+    <description><![CDATA[Input/output parameters]]></description>
+    <image>
+      <name>inputVolume</name>
+      <label>Input Volume</label>
+      <channel>input</channel>
+      <index>0</index>
+      <description><![CDATA[Input original volume]]></description>
+    </image>
+    <image type="vector">
+      <name>outputVolume</name>
+      <flag>-o</flag>
+      <longflag>--output</longflag>
+      <label>Output Volume</label>
+      <channel>output</channel>
+      <description><![CDATA[Output vector volume (full path or relative path). If defined, a vector image containing all feature maps will be saved.]]></description>
+    </image>
+    <string>
+      <name>savingPrefix</name>
+      <flag>-s</flag>
+      <longflag>--save</longflag>
+      <label>Saving Prefix</label>
+      <description><![CDATA[Prefix for output images (full path or relavive path). If defined, each feature map will be saved individually in using this prefix.]]></description>
+      <default></default>
+    </string>
+  </parameters>
+  <parameters>
+    <label>Controls</label>
+    <description><![CDATA[Control how the module operates]]></description>
+    <boolean>
+      <name>doHaralick</name>
+      <flag>-k</flag>
+      <longflag>--doharalick</longflag>
+      <label>Defines if Haralick features are going to be computed</label>
+      <description><![CDATA[DoHaralick]]></description>
+      <default>false</default>
+    </boolean>
+    <boolean>
+      <name>doHistogram</name>
+      <flag>-i</flag>
+      <longflag>--dohistogram</longflag>
+      <label>Defines if histogram features are going to be computed</label>
+      <description><![CDATA[DoHistogram]]></description>
+      <default>false</default>
+    </boolean>
+    <integer-vector>
+      <name>window_size</name>
+      <flag>-w</flag>
+      <longflag>--wsize</longflag>
+      <label>Defines window size for processing</label>
+      <description><![CDATA[WindowSize]]></description>
+      <default>3,3,3</default>
+    </integer-vector>
+  </parameters>
+</executable>
